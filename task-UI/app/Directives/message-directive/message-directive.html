@@ -1,0 +1,12 @@
+<h3>Messages</h3>
+<div class="div-scroll">
+    <ul id="list-msg" ng-repeat="msg in values">
+        <li ng-class='{in1:$first}'>
+            <div id="name">{{msg.name}}</div>
+            <span>{{msg.time}}</span>
+            <div>" {{msg.massage}} "</div>
+            <span class="glyphicon glyphicon-cog icon-msg" style="font-size: 13px"></span>
+            <span class="glyphicon glyphicon-share-alt icon-msg" style="font-size: 13px"></span>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task UI</title>
+    <!--scripts-->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!--app.js && controller app-->
+    <script src="app/app.js"></script>
+    <script src="app/controllers/main-controller.js"></script>
+
+    <!--Directives-->
+    <script src="app/Directives/active-directive/active-directive.js"></script>
+    <script src="app/Directives/message-directive/message-directive.js"></script>
+    <script src="app/Directives/user-directive/user-directive.js"></script>
+    <script src="app/Directives/task-directive/task-directive.js"></script>
+    <script src="app/Directives/sales-directive/sales-directive.js"></script>
+    <script src="app/Directives/sidebar-directive/sidebar-directive.js"></script>
+
+   <!--filter-->
+    <script src="app/filters/first-letter-filter.js"></script>
+
+    <!--CSS && Bootstrap-->
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="styles/style-main.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+</head>
+<body ng-app="app" ng-controller="main-controller">
+<div class="flex-container">
+    <div class="item1" sidebar-directive="state">
+        <div id="title">
+            <h2><span class="fa fa-circle-o" style="color:#5899e2;"></span> Merkury</h2>
+        </div>
+        <ul id="list-sidebar">
+            <li><span class="glyphicon glyphicon-home"></span> Home</li>
+            <li><span class="glyphicon glyphicon-align-justify"></span> Workflow</li>
+            <li><span class="fa fa-line-chart"></span> Statistics</li>
+            <li><span class="glyphicon glyphicon-calendar"></span> Calendar</li>
+            <li id="usersModal"><span class="glyphicon glyphicon-user"
+                                      data-toggle="modal"
+                                      data-target="#myModal1"></span> Users
+                <span class="badge" style="color:red;background-color: white;">5</span>
+            </li>
+            <div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" style="margin:0 auto;text-align: center">Friends</h4>
+                        </div>
+                        <div class="modal-body">
+                            <friends-user values="usersJSON"></friends-user>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <li><span class="glyphicon glyphicon-cog"></span> Settings</li>
+        </ul>
+    </div>
+    <div class="main ">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li ng-click="toggleState()" class="menu-toggle"><span class="fa fa-caret-left"
+                                                                           style="color:#2aabd2;font-size: 20px;"></span>
+                        <span class="glyphicon glyphicon-menu-hamburger"></span>
+                    </li>
+                    <li><span class="fa fa-search" style="font-size: 20px;"></span></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><span><input id="btn-header" type="button" value="+ Add project" data-toggle="modal"
+                                     data-target="#myModal"></span></li>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Add Project</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure ?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel
+                                    </button>
+                                    <button type="button" data-dismiss="modal" class="btn btn-primary">Yes
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <li><span class="glyphicon glyphicon-envelope" ng-click="mailTo()"></span></li>
+                    <li>
+                        <span class="fa fa-bell" style="font-size: 20px;">
+                            <audio>
+                                 <source src="./audio/beep.mp3" type="audio/mpeg">
+                           </audio>
+                            <span id="number" class="badge">3</span>
+                        </span>
+                    </li>
+                    <li><span class="fa fa-user-circle"></span></li>
+                    <li><span class="glyphicon glyphicon-apple"></span>
+                        <button style="border: none;background-color: transparent" data-toggle="dropdown">
+                            <span class="fa fa-caret-down" style="font-size: 20px;"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a>Profile</a></li>
+                            <li><a>Help</a></li>
+                            <li><a>Settings</a></li>
+                            <li><a>Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <h1>Hello John!</h1>
+        <div class="boxes-up box1">
+            <sales values="salesJSON"></sales>
+        </div>
+        <div class="boxes-up box2">
+            <h3>Report</h3>
+            <canvas id="myCanvas" height="180" width="300"></canvas>
+            <script>
+                var canvas = document.getElementById('myCanvas');
+                var context = canvas.getContext('2d');
+
+                context.beginPath();
+                context.moveTo(0, 80);
+                context.lineTo(40, 70);
+                context.lineTo(60, 100);
+                context.lineTo(200, 140);
+                context.lineTo(220, 160);
+
+                context.quadraticCurveTo(230, 200, 250, 120);
+
+                context.bezierCurveTo(290, -40, 300, 200, 400, 150);
+
+
+                context.lineWidth = 5;
+                context.strokeStyle = 'blue';
+                context.stroke();
+            </script>
+        </div>
+        <div class="boxes">
+            <task values="tasksJSON"></task>
+        </div>
+        <div class="boxes">
+            <message values="messagesJSON"></message>
+        </div>
+        <div class="boxes">
+            <active values="activityJSON"></active>
+        </div>
+    </div>
+</div>
+</body>
+</html>

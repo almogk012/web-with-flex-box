@@ -1,0 +1,16 @@
+<h3>Tasks</h3>
+<div class="div-scroll">
+    <ul id="list-tasks" ng-repeat="task in values">
+        <li>
+            <div class="circle">
+                {{task.title | findfirstlet}}
+            </div>
+            <div>
+                {{task.title}} <span  class="glyphicon glyphicon-option-vertical"></span>
+            </div>
+            <div style="font-size: 11px">
+                <span style="color:red;font-size: 11px" class="glyphicon glyphicon-time"></span>{{task.time}}
+            </div>
+        </li>
+    </ul>
+</div>
